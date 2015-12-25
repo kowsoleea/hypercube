@@ -114,7 +114,7 @@ var viewpoint3D = {
         this.e2 = rotate3d(this.e2, alpha);
     }
 };
-    
+
 var viewpoint4D = {
     v: new Point4D(vp4.w, vp4.x, vp4.y, vp4.z),
     e1: new Point4D(e41.w, e41.x, e41.y, e41.z),

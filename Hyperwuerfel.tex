@@ -24,6 +24,20 @@
 	\end{equation}
 }
 
+% makes an image
+% arg1: filename of image
+% arg2: caption
+% arg3: label (for \autoref{} )
+% arg4: width in cm
+\newcommand{\image}[4]{
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[width=#4cm]{#1}
+		\caption{#2}
+		\label{#3}
+	\end{figure}
+}
+
 \begin{document}
 \maketitle
 \leading{13pt}
@@ -32,7 +46,7 @@
 Ein Hyperwürfel ist ein Würfel in der vierten Dimension. Wie sieht so
 ein Ding aus, und wie konstruiert man so etwas?
 
-Um die Konstruktion besser zu verstehen fangen wir mit einem 0-dimensionalen
+Um die Konstruktion besser zu verstehen fangen wir mit einem 0-dimen\-siona\-len
 Würfel an: einen Punkt. Da wir hier nur einen Punkt zur Verfügung 
 braucht man auch keine Koordinaten. Beim Übergang zum eindimensionalen Fall 
 \textemdash\ ein Linienstück \textemdash\ nehmen wir den ursprünglichen Punkt
@@ -42,11 +56,11 @@ Das jetzt entstandene Linienstück ist unser eindimensionaler Würfel.
 
 \myeq{(0)\rightarrow (1)}{dim1}
 
-Wir breiten jetzt aus zur zweiten Dimension. Das Linienstück in \autoref{dim1}
+Wir breiten jetzt aus zur zweiten Dimension. Das Linienstück in (1)
 bekommt eine zweite Koordinate gleich 0:
 \myeq{(0,0)\rightarrow (1,0)}{dim1in2}
 Anschließend kopieren wir dieses Linienstück und geben der Kopie als zweite
-Koordinate die 1. Danach verbinden wir beide Linienstücke mit einander.
+Koordinate die 1. Danach verbinden wir jeden Punkt mit seiner Kopie.
 
 \myeq{(0,0)\rightarrow (1,0)\\
 	(0,1)\rightarrow(1,1)\\
@@ -54,8 +68,82 @@ Koordinate die 1. Danach verbinden wir beide Linienstücke mit einander.
 	(1,0)\rightarrow(1,1)}{dim2}
 	
 Diese vier Linienstücke bilden ein Quadrat \textemdash\ die zweidimensionale
-Variante des Würfels.
+Variante des Würfels (siehe \autoref{quadrat} auf \autopageref{quadrat}).
 
+\image{img/quadrat.eps}{Ein Quadrat}{quadrat}{5}
 
+Die vier Koordinatenpaare in (3) geben genau die Liniensegmente an, die
+mit einander verbunden werden müssen, um ein Quadrat zu erzeugen.
 
+Genau so finden wir die Liniensegmente die wir für ein Würfel (dreidimensional)
+brauchen. Wir nehme die 4 Liniensegemnte aus (3) und versehen sie mit einer
+dritten Koordinate die wir gleich 0 stellen. Danach nehmen wir wieder die 
+Liniensegmente, diesmal aber mit der 1 als dritte Koordinate. Die 
+vier Eckpunkte verbinden wir noch mit deren Kopien.
+
+\myeq{(0,0,0)\rightarrow(1,0,0)\\
+	(0,1,0)\rightarrow(1,1,0)\\
+	(0,0,0)\rightarrow(0,1,0)\\
+	(0,1,0)\rightarrow(1,1,0)\\
+	\\
+	(0,0,1)\rightarrow(1,0,1)\\
+	(0,1,1)\rightarrow(1,1,1)\\
+	(0,0,1)\rightarrow(0,1,1)\\
+	(0,1,1)\rightarrow(1,1,1)\\
+	\\
+	(0,0,0)\rightarrow(0,0,1)\\
+	(0,1,0)\rightarrow(0,1,1)\\
+	(1,0,0)\rightarrow(1,0,1)\\
+	(1,1,0)\rightarrow(1,1,1)
+}{würfel}
+
+\image{img/wuerfel.eps}{Ein Würfel}{würfel1}{6}
+
+Die 12 Liniensegmente wür den Würfel sind gegeben in (4). \autoref{würfel1} auf
+\autopageref{würfel1} zeigt den Würfel nochmal.
+
+Die Konstruktion des Hyperwürfels stellt jetzt kein Problem mehr da. Wir
+versehen die 12 Liniensegmente aus (4) mit einer 4. Koordinate gleich 0.
+Das wiederholen wir mit einer 4. Koordinate gleich 1 und verbinden die 8
+Eckpunkte mit deren Kopien. Das Ergebnis ist:
+
+\myeq{(0,0,0,0)\rightarrow(1,0,0,0);\
+	(0,1,0,0)\rightarrow(1,1,0,0)\\
+	(0,0,0,0)\rightarrow(0,1,0,0);\
+	(0,1,0,0)\rightarrow(1,1,0,0)\\
+	(0,0,1,0)\rightarrow(1,0,1,0);\
+	(0,1,1,0)\rightarrow(1,1,1,0)\\
+	(0,0,1,0)\rightarrow(0,1,1,0);\
+	(0,1,1,0)\rightarrow(1,1,1,0)\\
+	(0,0,0,0)\rightarrow(0,0,1,0);\
+	(0,1,0,0)\rightarrow(0,1,1,0)\\
+	(1,0,0,0)\rightarrow(1,0,1,0);\
+	(1,1,0,0)\rightarrow(1,1,1,0)\\
+	\\
+	(0,0,0,1)\rightarrow(1,0,0,1);\
+	(0,1,0,1)\rightarrow(1,1,0,1)\\
+	(0,0,0,1)\rightarrow(0,1,0,1);\
+	(0,1,0,1)\rightarrow(1,1,0,1)\\
+	(0,0,1,1)\rightarrow(1,0,1,1);\
+	(0,1,1,1)\rightarrow(1,1,1,1)\\
+	(0,0,1,1)\rightarrow(0,1,1,1);\
+	(0,1,1,1)\rightarrow(1,1,1,1)\\
+	(0,0,0,1)\rightarrow(0,0,1,1);\
+	(0,1,0,1)\rightarrow(0,1,1,1)\\
+	(1,0,0,1)\rightarrow(1,0,1,1);\
+	(1,1,0,1)\rightarrow(1,1,1,1)\\
+	\\
+	(0,0,0,0)\rightarrow(0,0,0,1);\
+	(1,0,0,0)\rightarrow(1,0,0,1)\\
+	(0,1,0,0)\rightarrow(0,1,0,1);\
+	(1,1,0,0)\rightarrow(1,1,0,1)\\
+	(0,0,1,0)\rightarrow(0,0,1,1);\
+	(1,0,1,0)\rightarrow(1,0,1,1)\\
+	(0,1,1,0)\rightarrow(0,1,1,1);\
+	(1,1,1,0)\rightarrow(1,1,1,1)
+}{hyperw}
+
+Es ist leider nicht ohne weiteres Möglich, den Hyperwürfel zu zeichnen.
+Ich möchte jedoch einen Versuch unternehmen, den vierdiemensionalen Würfel
+auf drei Dimensionen zu projizieren, damit eine Visualisation möglich wird.
 \end{document}

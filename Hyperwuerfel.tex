@@ -2,37 +2,59 @@
 %\usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 \usepackage{fontspec}
+\usepackage[hidelinks]{hyperref}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{leading}
+\usepackage{parskip}
 
 \setmainfont{Palatino Linotype}
 
 \author{Ivanildo Kowsoleea}
 \title{Wie visualisiert man einen Hyperwürfel}
 
-\newcommand{\myeq}[1]{
+\newcommand{\myeq}[2]{
 	\begin{equation}
 		\begin{split}
 			#1
 		\end{split}
+		\label{#2}
 	\end{equation}
 }
 
 \begin{document}
 \maketitle
 \leading{13pt}
-\parindent{2pt}
 
 \section{Was ist ein Hyperwürfel?}
 Ein Hyperwürfel ist ein Würfel in der vierten Dimension. Wie sieht so
 ein Ding aus, und wie konstruiert man so etwas?
 
 Um die Konstruktion besser zu verstehen fangen wir mit einem 0-dimensionalen
-Würfel an: einen Punkt.
+Würfel an: einen Punkt. Da wir hier nur einen Punkt zur Verfügung 
+braucht man auch keine Koordinaten. Beim Übergang zum eindimensionalen Fall 
+\textemdash\ ein Linienstück \textemdash\ nehmen wir den ursprünglichen Punkt
+und vergeben die eindimensionale Koordinate $(0)$. Wir Kopieren diesen Punkt,
+vergeben hier die Koordinate $(1)$, und verbinden beide Punkte mit einander.
+Das jetzt entstandene Linienstück ist unser eindimensionaler Würfel.
 
+\myeq{(0)\rightarrow (1)}{dim1}
+
+Wir breiten jetzt aus zur zweiten Dimension. Das Linienstück in \autoref{dim1}
+bekommt eine zweite Koordinate gleich 0:
+\myeq{(0,0)\rightarrow (1,0)}{dim1in2}
+Anschließend kopieren wir dieses Linienstück und geben der Kopie als zweite
+Koordinate die 1. Danach verbinden wir beide Linienstücke mit einander.
+
+\myeq{(0,0)\rightarrow (1,0)\\
+	(0,1)\rightarrow(1,1)\\
+	(0,0)\rightarrow(0,1)\\
+	(1,0)\rightarrow(1,1)}{dim2}
+	
+Diese vier Linienstücke bilden ein Quadrat \textemdash\ die zweidimensionale
+Variante des Würfels.
 
 
 

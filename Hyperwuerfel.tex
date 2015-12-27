@@ -146,4 +146,73 @@ Eckpunkte mit deren Kopien. Das Ergebnis ist:
 Es ist leider nicht ohne weiteres Möglich, den Hyperwürfel zu zeichnen.
 Ich möchte jedoch einen Versuch unternehmen, den vierdiemensionalen Würfel
 auf drei Dimensionen zu projizieren, damit eine Visualisation möglich wird.
+\section{Die Projektion}
+Betrachten wir den Fall wobei ein Punkt aus dem zweidimensionalen
+Raum auf eine Linie (eindimensionaler Raum) projiziert wird.
+Siehe \autoref{projektion1}.
+\image{img/Projektion.eps}{Projektion von einem Punkt $P$ auf 
+	eine Linie gegeben durch $\vec{e}$, gesehen von $V$ aus}
+	{projektion1}{6}
+	
+Der eindimensionale Projektionsraum wird festgelegt durch den Vektor
+$\vec{e}$. Die Linie von dem Ursprung nach $V$ steht senkrecht auf $\vec{e}$.
+Jetzt muss $P'$ bestimmt werden, der Schnittpunkt von der
+Projektionslinie mit der Linie $VP$.
+
+Der Projektionsraum wird gegeben durch:
+\myeq{l:\; \vec{l}=\lambda \vec{e}}{proj01}
+
+Die Linie $VP$ ist gegeben durch:
+\myeq{m:\; \vec{m}=\vec{v} + \mu(\vec{p}-\vec{v})}{proj02}
+
+Den Schnittpunkt ermitteln wir, indem wir $\vec{l}$ und $\vec{m}$
+einander gleich stellen:
+\myeq{\lambda \vec{e} = \vec{v} + \mu(\vec{p}-\vec{v})}{proj03}
+
+
+Jetzt nehmen wir von beiden Seiten der \autoref{proj03} das Vektorprodukt
+mit $\vec{v}$
+\myeq{\lambda(\vec{v}\cdot\vec{e}) = (\vec{v}\cdot\vec{v}) + \mu 
+	(\vec{v}\cdot(\vec{p}-\vec{v}))}{proj05}
+
+Weil $\vec{v}$ und $\vec{e}$ senkrecht aufeinander stehen, gilt:
+\myeq{(\vec{v}\cdot\vec{e}) = 0}{proj04}
+
+Die linke Seite der \autoref{proj05} ist also gleich 0. Der Wert von
+$\mu$ ist leicht zu ermitteln:
+\myeq{\mu = \frac{-(\vec{v}\cdot\vec{v})}
+	{(\vec{v}\cdot(\vec{p}-\vec{v}))}}{proj06}
+	
+Der Punkt $P'$ ist nun festgelegt in dem man den gefundenen Wert
+für $\mu$ in \autoref{proj02} einsetzt:
+\myeq{P':\; \vec{p'} = \vec{v} -  \frac{(\vec{v}\cdot\vec{v})}
+	{(\vec{v}\cdot(\vec{p}-\vec{v}))}(\vec{p}-\vec{v})}{proj07}
+
+Die Ausbreitung auf höheren Dimensionen ist fast trivial. Betrachten wir
+eine Projektion von drei auf zwei Dimensionen. Anstelle der Linie gegeben durch
+\autoref{proj01} tritt jetzt eine Ebene gegeben durch 2 Vektoren
+$\vec{e_1}$ und $\vec{e_2}$. Somit wird \autoref{proj03}:
+\myeq{
+	\lambda_1\vec{e_1} + \lambda_2\vec{e_2} = \vec{v} + \mu(\vec{p}-\vec{v})
+}{proj08}
+
+Weil beide Vektoren $\vec{e_1}$ und $\vec{e_2}$ senkrecht auf $\vec{v}$ stehen
+wird nach Vektormultiplikation mit $\vec{v}$ die linke Seite der entstandene 
+Gleichung wieder gleich 0. Der Wert von $\mu$ bleibt unverändert. Verallgemeinert
+für $n$ Dimensionen wird \autoref{proj03}:
+\myeq{
+	\sum_{i=1}^{n}\lambda_i\vec{e_i} = \vec{v} + \mu(\vec{p}-\vec{v})
+}{proj09}
+Weil alle $\vec{e_i}$ senkrecht stehen auf $\vec{v}$, gilt:
+\myeq{
+	\sum_{i=1}^{n}\lambda_i (\vec{v}\cdot\vec{e_i})\;=0
+}{proj10}
+$\mu$ und $P'$ bleiben unverändert (siehe \autoref{proj06} und 
+\autoref{proj07}). Wenn alle
+Vektoren $\vec{e_i}$ die Länge 1 haben, und senkrecht aufeinander stehen
+(Orthonormal) kann man die Koordinaten $p'_i$ von $P'$ in der neuen 
+projizierten Dimension ermitteln durch:
+\myeq{
+	p'_i = \vec{p'}\cdot\vec{e_i}
+}{proj11}
 \end{document}

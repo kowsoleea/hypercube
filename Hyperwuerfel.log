@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9 64-bit) (preloaded format=xelatex 2014.1.12)  25 DEC 2015 20:30
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9 64-bit) (preloaded format=xelatex 2014.1.12)  27 DEC 2015 14:56
 entering extended mode
 **Hyperwuerfel.tex
 (D:\Ivan\www\hypercube\Hyperwuerfel.tex
@@ -897,22 +897,24 @@ File: img/wuerfel.eps Graphic file (type eps)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 149.
+File: img/Projektion.eps Graphic file (type eps)
 
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 149.
+<img/Projektion.eps> [4] [5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 218.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 218.
  (D:\Ivan\www\hypercube\Hyperwuerfel.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 149.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 149.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 149.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 218.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 218.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 218.
  ) 
 Here is how much of TeX's memory you used:
- 20988 strings out of 429025
- 369463 string characters out of 3167967
- 431187 words of memory out of 3000000
- 24048 multiletter control sequences out of 15000+200000
+ 21002 strings out of 429025
+ 369596 string characters out of 3167967
+ 431750 words of memory out of 3000000
+ 24061 multiletter control sequences out of 15000+200000
  10496 words of font info for 60 fonts, out of 3000000 for 9000
  912 hyphenation exceptions out of 8191
- 46i,14n,45p,596b,368s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 46i,17n,45p,596b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on Hyperwuerfel.pdf (4 pages).
+Output written on Hyperwuerfel.pdf (6 pages).

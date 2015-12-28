@@ -10,7 +10,7 @@
 \usepackage{leading}
 \usepackage{parskip}
 
-\setmainfont{Palatino Linotype}
+\setmainfont[Ligatures=TeX]{Palatino Linotype}
 
 \author{Ivanildo Kowsoleea}
 \title{Wie visualisiert man einen Hyperwürfel}
@@ -40,6 +40,7 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
 \leading{13pt}
 
 \section{Was ist ein Hyperwürfel?}
@@ -72,10 +73,7 @@ Variante des Würfels (siehe \autoref{quadrat} auf \autopageref{quadrat}).
 
 \image{img/quadrat.eps}{Ein Quadrat}{quadrat}{5}
 
-Die vier Koordinatenpaare in (3) geben genau die Liniensegmente an, die
-mit einander verbunden werden müssen, um ein Quadrat zu erzeugen.
-
-Genau so finden wir die Liniensegmente die wir für ein Würfel (dreidimensional)
+Genau so finden wir die Liniensegmente, die wir für ein Würfel (dreidimensional)
 brauchen. Wir nehme die 4 Liniensegemnte aus (3) und versehen sie mit einer
 dritten Koordinate die wir gleich 0 stellen. Danach nehmen wir wieder die 
 Liniensegmente, diesmal aber mit der 1 als dritte Koordinate. Die 
@@ -144,8 +142,9 @@ Eckpunkte mit deren Kopien. Das Ergebnis ist:
 }{hyperw}
 
 Es ist leider nicht ohne weiteres Möglich, den Hyperwürfel zu zeichnen.
-Ich möchte jedoch einen Versuch unternehmen, den vierdiemensionalen Würfel
+Ich möchte jedoch einen Versuch unternehmen, den vierdimensionalen Würfel
 auf drei Dimensionen zu projizieren, damit eine Visualisation möglich wird.
+
 \section{Die Projektion}
 Betrachten wir den Fall wobei ein Punkt aus dem zweidimensionalen
 Raum auf eine Linie (eindimensionaler Raum) projiziert wird.
@@ -154,16 +153,17 @@ Siehe \autoref{projektion1}.
 	eine Linie gegeben durch $\vec{e}$, gesehen von $V$ aus}
 	{projektion1}{6}
 	
-Der eindimensionale Projektionsraum wird festgelegt durch den Vektor
-$\vec{e}$. Die Linie von dem Ursprung nach $V$ steht senkrecht auf $\vec{e}$.
-Jetzt muss $P'$ bestimmt werden, der Schnittpunkt von der
-Projektionslinie mit der Linie $VP$.
+Der eindimensionale Projektionsraum wird durch den Vektor
+$\vec{e}$ bestimmt. Die Linie vom Ursprung nach $V$ steht 
+senkrecht auf $\vec{e}$.
+Jetzt muss $P'$ -- der Schnittpunkt der
+Projektionslinie mit der Linie $VP$ -- ermittelt werden.
 
-Der Projektionsraum wird gegeben durch:
-\myeq{l:\; \vec{l}=\lambda \vec{e}}{proj01}
+Der Projektionsraum $\vec{l}$ wird gegeben durch:
+\myeq{\vec{l}=\lambda \vec{e}}{proj01}
 
-Die Linie $VP$ ist gegeben durch:
-\myeq{m:\; \vec{m}=\vec{v} + \mu(\vec{p}-\vec{v})}{proj02}
+Die Linie $VP$ als $\vec{m}$ ist gegeben durch:
+\myeq{\vec{m}=\vec{v} + \mu(\vec{p}-\vec{v})}{proj02}
 
 Den Schnittpunkt ermitteln wir, indem wir $\vec{l}$ und $\vec{m}$
 einander gleich stellen:
@@ -199,20 +199,21 @@ $\vec{e_1}$ und $\vec{e_2}$. Somit wird \autoref{proj03}:
 Weil beide Vektoren $\vec{e_1}$ und $\vec{e_2}$ senkrecht auf $\vec{v}$ stehen
 wird nach Vektormultiplikation mit $\vec{v}$ die linke Seite der entstandene 
 Gleichung wieder gleich 0. Der Wert von $\mu$ bleibt unverändert. Verallgemeinert
-für $n$ Dimensionen wird \autoref{proj03}:
+für eine Projektion von $n+1$ auf $n$ Dimensionen wird \autoref{proj03}:
 \myeq{
 	\sum_{i=1}^{n}\lambda_i\vec{e_i} = \vec{v} + \mu(\vec{p}-\vec{v})
 }{proj09}
-Weil alle $\vec{e_i}$ senkrecht stehen auf $\vec{v}$, gilt:
+Weil alle $\vec{e_i}$ senkrecht stehen auf $\vec{v}$, gilt
 \myeq{
 	\sum_{i=1}^{n}\lambda_i (\vec{v}\cdot\vec{e_i})\;=0
 }{proj10}
-$\mu$ und $P'$ bleiben unverändert (siehe \autoref{proj06} und 
+weshalb $\mu$ und $P'$ unverändert bleiben (siehe \autoref{proj06} und 
 \autoref{proj07}). Wenn alle
 Vektoren $\vec{e_i}$ die Länge 1 haben, und senkrecht aufeinander stehen
-(Orthonormal) kann man die Koordinaten $p'_i$ von $P'$ in der neuen 
-projizierten Dimension ermitteln durch:
+(Orthonormal) kann man die Koordinaten $p'_i$ von $P'$ im n-dimensionalen 
+Raum mit
 \myeq{
 	p'_i = \vec{p'}\cdot\vec{e_i}
 }{proj11}
+ermitteln.
 \end{document}

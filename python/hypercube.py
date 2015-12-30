@@ -12,6 +12,7 @@ import math
 import ConfigParser
 
 INIFILE = "hypercube.ini"
+IMAGEFILE = "hypercube.svg"
 
 
 #a hypercube is a collection of lines, wich are point pairs.
@@ -151,17 +152,19 @@ class Projection(object):
 
 class SVG_file(object):
     width = 1000
-    height = 500
+    height = 1000
     scale_x = 300
     scale_y = 300
+    output_file = ''
     
-    def __init__(self, width=1000, height=500, scale=300):
+    def __init__(self, width=1000, height=1000, scale=300, outfile=IMAGEFILE):
         self.width = width
         self.height = height
         self.origin_x = int(width / 2.0)
         self.origin_y = int(height - (height / 2.0))
         self.scale_x = scale
         self.scale_y = scale
+        self.output_file = outfile
 
     def make_point(self, point):
         px = int(self.origin_x + self.scale_x * point[0])
@@ -176,36 +179,58 @@ class SVG_file(object):
         return svg_string
     
     def make_svg(self, lines):
-        print '<?xml version="1.0" encoding="utf-8"?>'
-        print '<svg xmlns="http://www.w3.org/2000/svg"'
-        print '     xmlns:xlink="http://www.w3.org/1999/xlink"'
-        print '     width="{0}" height="{1}">'.format(self.width, self.height)
+        of = open(self.output_file, 'w')
+        of.write('<?xml version="1.0" encoding="utf-8"?>\n')
+        of.write('<svg xmlns="http://www.w3.org/2000/svg"\n')
+        of.write('     xmlns:xlink="http://www.w3.org/1999/xlink"\n')
+        of.write('     width="{0}" height="{1}">\n'.format(self.width, self.height))
         for l in lines:
-            print self.make_line(l)
-        print '</svg>'
+            of.write(self.make_line(l) + '\n')
+        of.write('</svg>\n')
+        of.close()
 
 def read_inifile(p3, p2, svg):
     config = ConfigParser.SafeConfigParser()
     config.read(INIFILE)
     p3options = config.items('project4to3')
+    for option in p3options:
+        name, value = option
+        if name == 'distance':
+            p3.set_distance(float(value))
+        if name.startswith('rot'):
+            rotlist = value.split(',')
+            p3.rotate(int(rotlist[0]), int(rotlist[1]), int(rotlist[2]))
     p2options = config.items('project3to2')
+    for option in p2options:
+        name, value = option
+        if name == 'distance':
+            p2.set_distance(float(value))
+        if name.startswith('rot'):
+            rotlist = value.split(',')
+            p2.rotate(int(rotlist[0]), int(rotlist[1]), int(rotlist[2]))
     svgoptions = config.items('svg')
+    for option in svgoptions:
+        name, value = option
+        if name == 'width':
+            svg.width = int(value, 10)
+        elif name == 'height':
+            svg.height = int(value, 10)
+        elif name =='scale':
+            svg.scale = int(value, 10)
+        elif name == 'outfile':
+            svg.output_file = value
     return p3, p2, svg
 
 def main():
-    p2 = Projection(2, 20)
-    p2.rotate(0,2,-10)
-    #p2.rotate(1,2,-5)
-    p3 = Projection(3, 20)
-    #p3.rotate(1,3,15)
-    #p3.rotate(2,3,20)
-    svg = SVG_file(1000, 1000, 300)
-    read_inifile(p3, p2, svg)
+    p2 = Projection(2)
+    p3 = Projection(3)
+    svg = SVG_file()
+    p3, p2, svg = read_inifile(p3, p2, svg)
     #now do the work
     hc = make_hypercube(4)
     hc3 = p3.project_all_lines(hc)
     hc2 = p2.project_all_lines(hc3)
-    #svg.make_svg(hc2)
+    svg.make_svg(hc2)
     return 0
 
 

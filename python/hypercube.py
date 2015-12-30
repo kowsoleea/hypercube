@@ -9,6 +9,9 @@
 #
 
 import math
+import ConfigParser
+
+INIFILE = "hypercube.ini"
 
 
 #a hypercube is a collection of lines, wich are point pairs.
@@ -84,6 +87,13 @@ class Projection(object):
                 e = [0 for x in range(self.dimension + 1)]
                 e[i] = 1
                 self.unit_vectors.append(e)
+                
+    def set_distance(self, d):
+        v = self.view_vector
+        scalar = d / math.sqrt(dotproduct(v,v))
+        v = scalarmult(scalar, v)
+        self.view_vector = v
+        self.distance = d
 
     def project_point(self, p):
         v = scalarmult(1.0, self.view_vector)
@@ -142,8 +152,6 @@ class Projection(object):
 class SVG_file(object):
     width = 1000
     height = 500
-    origin_x = 250
-    origin_y = 400
     scale_x = 300
     scale_y = 300
     
@@ -176,6 +184,13 @@ class SVG_file(object):
             print self.make_line(l)
         print '</svg>'
 
+def read_inifile(p3, p2, svg):
+    config = ConfigParser.SafeConfigParser()
+    config.read(INIFILE)
+    p3options = config.items('project4to3')
+    p2options = config.items('project3to2')
+    svgoptions = config.items('svg')
+    return p3, p2, svg
 
 def main():
     p2 = Projection(2, 20)
@@ -184,11 +199,13 @@ def main():
     p3 = Projection(3, 20)
     #p3.rotate(1,3,15)
     #p3.rotate(2,3,20)
+    svg = SVG_file(1000, 1000, 300)
+    read_inifile(p3, p2, svg)
+    #now do the work
     hc = make_hypercube(4)
     hc3 = p3.project_all_lines(hc)
     hc2 = p2.project_all_lines(hc3)
-    svg = SVG_file(1000, 1000, 300)
-    svg.make_svg(hc2)
+    #svg.make_svg(hc2)
     return 0
 
 

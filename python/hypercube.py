@@ -17,7 +17,7 @@ import math
 def make_hypercube(dimension):
     #make a hypercube with dimension
     if dimension == 1:
-        return [[[0],[1]]]
+        return [[[-1],[1]]]
     else:
         lower_hycube = make_hypercube(dimension - 1)
         newlines = []
@@ -26,8 +26,8 @@ def make_hypercube(dimension):
             p1high = list(line[0])
             p2low = list(line[1])
             p2high = list(line[1])
-            p1low.append(0)
-            p2low.append(0)
+            p1low.append(-1)
+            p2low.append(-1)
             p1high.append(1)
             p2high.append(1)
             newlines.append([p1low, p1high])
@@ -150,8 +150,8 @@ class SVG_file(object):
     def __init__(self, width=1000, height=500, scale=300):
         self.width = width
         self.height = height
-        self.origin_x = int(width / 4.0)
-        self.origin_y = int(height - (height / 5.0))
+        self.origin_x = int(width / 2.0)
+        self.origin_y = int(height - (height / 2.0))
         self.scale_x = scale
         self.scale_y = scale
 
@@ -180,15 +180,15 @@ class SVG_file(object):
 def main():
     p2 = Projection(2, 20)
     p2.rotate(0,2,-10)
-    p2.rotate(1,2,-5)
-    p3 = Projection(3, 10)
-    p3.rotate(1,3,15)
+    #p2.rotate(1,2,-5)
+    p3 = Projection(3, 20)
+    #p3.rotate(1,3,15)
     p3.rotate(2,3,20)
     hc = make_hypercube(4)
     hc3 = p3.project_all_lines(hc)
-    phc = p2.project_all_lines(hc3)
-    svg = SVG_file(700, 700, 300)
-    svg.make_svg(phc)
+    hc2 = p2.project_all_lines(hc3)
+    svg = SVG_file(1000, 1000, 300)
+    svg.make_svg(hc2)
     return 0
 
 

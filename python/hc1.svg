@@ -2,72 +2,6 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      xmlns:xlink="http://www.w3.org/1999/xlink"
      width="1000" height="1000">
-<<<<<<< HEAD
-     <line x1="45" y1="1075" x2="-20" y2="980" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-144" y1="1104" x2="-144" y2="1104" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="45" y1="1075" x2="-144" y2="1104" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-20" y1="980" x2="-144" y2="1104" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-63" y1="634" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-146" y1="474" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-63" y1="634" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-146" y1="474" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="45" y1="1075" x2="-20" y2="980" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-146" y1="474" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="45" y1="1075" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-20" y1="980" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-60" y1="1190" x2="-144" y2="1104" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-146" y1="474" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-60" y1="1190" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-144" y1="1104" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="577" y1="547" x2="581" y2="382" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="577" y1="547" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="581" y1="382" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="502" y1="631" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="502" y1="631" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="577" y1="547" x2="581" y2="382" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="577" y1="547" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="581" y1="382" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="502" y1="631" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="502" y1="631" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="45" y1="1075" x2="-20" y2="980" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-144" y1="1104" x2="-144" y2="1104" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="45" y1="1075" x2="-144" y2="1104" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-20" y1="980" x2="-144" y2="1104" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="502" y1="631" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="502" y1="631" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="45" y1="1075" x2="-20" y2="980" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="45" y1="1075" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-20" y1="980" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-60" y1="1190" x2="-144" y2="1104" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-60" y1="1190" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-144" y1="1104" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="40" y1="551" x2="-24" y2="389" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-146" y1="474" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="40" y1="551" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-24" y1="389" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="502" y1="631" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="502" y1="631" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="40" y1="551" x2="-24" y2="389" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="40" y1="551" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-24" y1="389" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-63" y1="634" x2="-146" y2="474" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="496" y1="467" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-63" y1="634" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-     <line x1="-146" y1="474" x2="496" y2="467" style="stroke:rgb(0,0,0);stroke-width:1" />
-=======
      <line x1="280" y1="770" x2="258" y2="797" style="stroke:rgb(0,0,0);stroke-width:1" />
      <line x1="155" y1="797" x2="117" y2="829" style="stroke:rgb(0,0,0);stroke-width:1" />
      <line x1="280" y1="770" x2="155" y2="797" style="stroke:rgb(0,0,0);stroke-width:1" />
@@ -132,5 +66,4 @@
      <line x1="745" y1="197" x2="772" y2="163" style="stroke:rgb(0,0,0);stroke-width:1" />
      <line x1="155" y1="202" x2="745" y2="197" style="stroke:rgb(0,0,0);stroke-width:1" />
      <line x1="117" y1="170" x2="772" y2="163" style="stroke:rgb(0,0,0);stroke-width:1" />
->>>>>>> test_minus_one
 </svg>

@@ -183,7 +183,7 @@ def main():
     #p2.rotate(1,2,-5)
     p3 = Projection(3, 20)
     #p3.rotate(1,3,15)
-    p3.rotate(2,3,20)
+    #p3.rotate(2,3,20)
     hc = make_hypercube(4)
     hc3 = p3.project_all_lines(hc)
     hc2 = p2.project_all_lines(hc3)

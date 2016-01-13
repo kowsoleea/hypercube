@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# pylint: disable=C0111
+# pylint: disable=C0111, C0103
 #
 #  hypercube.py
 #
@@ -21,7 +21,7 @@ IMAGEFILE = "hypercube.svg"
 def make_hypercube(dimension):
     #make a hypercube with dimension
     if dimension == 1:
-        return [[[-1],[1]]]
+        return [[[-1], [1]]]
     else:
         lower_hycube = make_hypercube(dimension - 1)
         newlines = []
@@ -39,13 +39,36 @@ def make_hypercube(dimension):
             newlines.append([p1low, p2low])
             newlines.append([p1high, p2high])
         return newlines
-            
-                
+
+
+length = 2
+crosslength = 0.5
+def make_hypercross(dimension):
+    s = []
+    c = []
+    zero = [0 for _ in range(dimension)]
+    for i in range(dimension):
+        e = [0 for _ in range(dimension)]
+        f = [0 for _ in range(dimension)]
+        s.append(e)
+        c.append(f)
+    for i in range(dimension):
+        s[i][i] = length
+        c[i][i] = length
+        j = i + 1 if (i+1) < dimension else 0
+        c[i][j] = crosslength
+    lines = []
+    for i in range(dimension):
+        lines.append([zero, s[i]])
+        lines.append([s[i], c[i]])
+    return lines
+
+
 def dotproduct(v1, v2):
-    sum = 0
+    vsum = 0
     for i in range(len(v1)):
-        sum = sum + v1[i] * v2[i]
-    return sum
+        vsum = vsum + v1[i] * v2[i]
+    return vsum
 
 def addvectors(v1, v2):
     result = []
@@ -58,7 +81,7 @@ def minusvector(v1):
     for i in range(len(v1)):
         result.append(-v1[i])
     return result
-    
+
 def scalarmult(s, v):
     result = []
     for i in range(len(v)):
@@ -77,21 +100,22 @@ class Projection(object):
     distance = 10 #default
     view_vector = []
     unit_vectors = []
-    
+
     def __init__(self, dimension=2, distance=10):
-            self.dimension = dimension
-            self.distance = distance
-            self.view_vector = [0 for i in range(self.dimension + 1)]
-            self.view_vector[self.dimension] = self.distance
-            self.unit_vectors = []
-            for i in range(self.dimension):
-                e = [0 for x in range(self.dimension + 1)]
-                e[i] = 1
-                self.unit_vectors.append(e)
-                
+        self.dimension = dimension
+        self.distance = distance
+        self.view_vector = [0 for i in range(self.dimension + 1)]
+        self.view_vector[self.dimension] = self.distance
+        self.unit_vectors = []
+        self.rotmatrix = []
+        for i in range(self.dimension):
+            e = [0 for _ in range(self.dimension + 1)]
+            e[i] = 1
+            self.unit_vectors.append(e)
+
     def set_distance(self, d):
         v = self.view_vector
-        scalar = d / math.sqrt(dotproduct(v,v))
+        scalar = d / math.sqrt(dotproduct(v, v))
         v = scalarmult(scalar, v)
         self.view_vector = v
         self.distance = d
@@ -99,32 +123,33 @@ class Projection(object):
     def project_point(self, p):
         v = scalarmult(1.0, self.view_vector)
         p_v = addvectors(p, minusvector(v))
-        l =dotproduct(v, v) / dotproduct(v, p_v)
+        l = dotproduct(v, v) / dotproduct(v, p_v)
         pp = addvectors(v, minusvector(scalarmult(l, p_v)))
         pp_coords = []
         for uv in self.unit_vectors:
             pp_coords.append(dotproduct(pp, uv))
         return pp_coords
-    
+
     def project_line(self, l):
         result_line = []
         result_line.append(self.project_point(l[0]))
         result_line.append(self.project_point(l[1]))
         return result_line
-    
+
     def project_all_lines(self, lines):
         result_lines = []
         for l in lines:
             result_lines.append(self.project_line(l))
         return result_lines
-    
+
     def make_rotate_matrix(self, axis1, axis2, angle):
-        '''angle in degrees; axis1, axis2: 0..n index of coordinates that should be affected by rotation'''
+        '''angle in degrees; axis1, axis2: 0..n index
+        of coordinates that should be affected by rotation'''
         a_rad = (angle * math.pi) / 180.0
         #a matrix is a list of vectors (more or less)
         self.rotmatrix = []
         for i in range(self.dimension + 1):
-            vec = [0 for x in range(self.dimension + 1)]
+            vec = [0 for _ in range(self.dimension + 1)]
             vec[i] = 1
             self.rotmatrix.append(vec)
         #now we have the unity matrix
@@ -134,56 +159,72 @@ class Projection(object):
         self.rotmatrix[axis2][axis1] = sin_a
         self.rotmatrix[axis1][axis2] = - sin_a
         self.rotmatrix[axis2][axis2] = cos_a
-        
+
     def rotate_point(self, p):
-        pr = [0 for x in range(self.dimension + 1)]
+        pr = [0 for _ in range(self.dimension + 1)]
         for i in range(self.dimension + 1):
             for j in range(self.dimension + 1):
                 pr[i] += self.rotmatrix[i][j] * p[j]
         return pr
-    
+
     def rotate(self, axis1, axis2, angle):
         self.make_rotate_matrix(axis1, axis2, angle)
         self.view_vector = self.rotate_point(self.view_vector)
         for i in range(self.dimension):
             self.unit_vectors[i] = self.rotate_point(self.unit_vectors[i])
-            
-    
+
+
 
 class SVG_file(object):
     width = 1000
     height = 1000
-    scale_x = 300
-    scale_y = 300
+    scale = 300
     output_file = ''
-    
+
     def __init__(self, width=1000, height=1000, scale=300, outfile=IMAGEFILE):
         self.width = width
         self.height = height
         self.origin_x = int(width / 2.0)
         self.origin_y = int(height - (height / 2.0))
-        self.scale_x = scale
-        self.scale_y = scale
+        self.scale = scale
         self.output_file = outfile
 
+    def set_width(self, width=1000):
+        self.width = width
+        self.origin_x = int(width / 2.0)
+
+    def set_height(self, height=1000):
+        self.height = height
+        self.origin_y = int(height - (height / 2.0))
+
+    def set_scale(self, scale=300):
+        self.scale = scale
+
+
     def make_point(self, point):
-        px = int(self.origin_x + self.scale_x * point[0])
-        py = int(self.origin_y - self.scale_y * point[1])
+        px = int(self.origin_x + self.scale * point[0])
+        py = int(self.origin_y - self.scale * point[1])
         return [px, py]
 
-    #<line x1="0" y1="0" x2="90" y2="20" style="stroke:rgb(0,0,0);stroke-width:1" />
+    #<line x1="0" y1="0" x2="90" y2="20"
+    #style="stroke:rgb(0,0,0);stroke-width:1" />
     def make_line(self, line):
         p1 = self.make_point(line[0])
         p2 = self.make_point(line[1])
-        svg_string = '     <line x1="{0}" y1="{1}" x2="{2}" y2="{3}" style="stroke:rgb(0,0,0);stroke-width:1" />'.format(p1[0], p1[1], p2[0], p2[1])
+        svg_string = '     <line x1="{0}" y1="{1}" x2="{2}" y2="{3}" \
+        style="stroke:rgb(0,0,0);stroke-width:1" />'.format(p1[0],
+                                                            p1[1],
+                                                            p2[0],
+                                                            p2[1])
         return svg_string
-    
+
     def make_svg(self, lines):
         of = open(self.output_file, 'w')
         of.write('<?xml version="1.0" encoding="utf-8"?>\n')
         of.write('<svg xmlns="http://www.w3.org/2000/svg"\n')
         of.write('     xmlns:xlink="http://www.w3.org/1999/xlink"\n')
-        of.write('     width="{0}" height="{1}">\n'.format(self.width, self.height))
+        of.write('     width="{0}" height="{1}">\n'.format(self.width,
+                                                           self.height))
         for l in lines:
             of.write(self.make_line(l) + '\n')
         of.write('</svg>\n')
@@ -212,30 +253,34 @@ def read_inifile(p3, p2, svg):
     for option in svgoptions:
         name, value = option
         if name == 'width':
-            svg.width = int(value, 10)
+            svg.set_width(int(value, 10))
         elif name == 'height':
-            svg.height = int(value, 10)
-        elif name =='scale':
+            svg.set_height(int(value, 10))
+        elif name == 'scale':
             svg.scale = int(value, 10)
         elif name == 'outfile':
             svg.output_file = value
     return p3, p2, svg
 
 def main():
+    # p2 = Projection(2)
+    # p3 = Projection(3)
+    # svg = SVG_file()
+    # p3, p2, svg = read_inifile(p3, p2, svg)
+    #now do the work
+    # hc = make_hypercube(4)
+    # hc3 = p3.project_all_lines(hc)
+    # hc2 = p2.project_all_lines(hc3)
+    # svg.make_svg(hc2)
     p2 = Projection(2)
     p3 = Projection(3)
     svg = SVG_file()
     p3, p2, svg = read_inifile(p3, p2, svg)
-    #now do the work
-    hc = make_hypercube(4)
-    hc3 = p3.project_all_lines(hc)
-    hc2 = p2.project_all_lines(hc3)
-    svg.make_svg(hc2)
+    hc = make_hypercross(4)
+    hcp = p2.project_all_lines(p3.project_all_lines(hc))
+    svg.make_svg(hcp)
     return 0
 
 
 if __name__ == '__main__':
     main()
-
-
-

@@ -1,3 +1,5 @@
 \select@language {ngerman}
 \contentsline {section}{\numberline {1}Was ist ein Hyperwürfel?}{2}{section.1}
 \contentsline {section}{\numberline {2}Die Projektion}{5}{section.2}
+\contentsline {section}{\numberline {3}Das Visualisieren des Hyperwürfels}{6}{section.3}
+\contentsline {section}{\numberline {4}Eine Rotation}{7}{section.4}

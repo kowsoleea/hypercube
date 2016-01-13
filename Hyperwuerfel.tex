@@ -7,6 +7,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{pstricks}
 \usepackage{leading}
 \usepackage{parskip}
 
@@ -24,6 +25,8 @@
 	\end{equation}
 }
 
+\newcommand{\colvec}[1]{$\begin{pmatrix}#1\end{pmatrix}$}
+
 % makes an image
 % arg1: filename of image
 % arg2: caption
@@ -34,8 +37,17 @@
 		\centering
 		\includegraphics[width=#4cm]{#1}
 		\caption{#2}
-		\label{#3}
+		#3
 	\end{figure}
+}
+
+\newcommand{\psimg}[3]{
+    \begin{figure}[!ht]
+        \centering
+        \input{#1}
+        \caption{#2}
+        #3
+    \end{figure}
 }
 
 \begin{document}
@@ -71,7 +83,7 @@ Koordinate die 1. Danach verbinden wir jeden Punkt mit seiner Kopie.
 Diese vier Linienstücke bilden ein Quadrat \textemdash\ die zweidimensionale
 Variante des Würfels (siehe \autoref{quadrat} auf \autopageref{quadrat}).
 
-\image{img/quadrat.eps}{Ein Quadrat}{quadrat}{5}
+\image{img/quadrat.eps}{Ein Quadrat}{\label{quadrat}}{5}
 
 Genau so finden wir die Liniensegmente, die wir für ein Würfel (dreidimensional)
 brauchen. Wir nehme die 4 Liniensegemnte aus (3) und versehen sie mit einer
@@ -95,7 +107,7 @@ vier Eckpunkte verbinden wir noch mit deren Kopien.
 	(1,1,0)\rightarrow(1,1,1)
 }{würfel}
 
-\image{img/wuerfel.eps}{Ein Würfel}{würfel1}{6}
+\psimg{img/wuerfel.tex}{Ein dreidimensionaler Würfel}{\label{würfel1}}
 
 Die 12 Liniensegmente wür den Würfel sind gegeben in (4). \autoref{würfel1} auf
 \autopageref{würfel1} zeigt den Würfel nochmal.
@@ -149,9 +161,10 @@ auf drei Dimensionen zu projizieren, damit eine Visualisation möglich wird.
 Betrachten wir den Fall wobei ein Punkt aus dem zweidimensionalen
 Raum auf eine Linie (eindimensionaler Raum) projiziert wird.
 Siehe \autoref{projektion1}.
-\image{img/Projektion.eps}{Projektion von einem Punkt $P$ auf 
-	eine Linie gegeben durch $\vec{e}$, gesehen von $V$ aus}
-	{projektion1}{6}
+    
+\psimg{img/Projektion.tex}{Projektion von einem Punkt $P$ auf 
+    eine Linie gegeben durch $\vec{e}$, gesehen von $V$ aus}
+{\label{projektion1}}
 	
 Der eindimensionale Projektionsraum wird durch den Vektor
 $\vec{e}$ bestimmt. Die Linie vom Ursprung nach $V$ steht 
@@ -216,4 +229,68 @@ Raum mit
 	p'_i = \vec{p'}\cdot\vec{e_i}
 }{proj11}
 ermitteln.
+
+\section{Das Visualisieren des Hyperwürfels}
+Die vorher erklärte Grundlagen wurden in einem "`Python"'-Programm 
+festgelegt. Um einen ersten Eindruck zu bekommen, habe ich den Hyperwürfel
+generieren lassen, und anschließend in 2 Schritten (von 4 auf 3 
+und von 3 auf 2 Dimensionen) auf eine Ebene projizieren lassen. Das Ergebnis
+ist in \autoref{hc0_0} zu sehen.
+
+\psimg{python/hc0_0.tex}{Ein erster Eindruck des Hyperwürfels}{\label{hc0_0}}
+
+Der Hyperwürfel wurde mit Koordinaten von -1 bis 1 generiert. 
+Bei der Projektion von 4 auf 3 Dimensionen sind $\vec{e_1}, \vec{e_2}$ und 
+$\vec{e_3}$ gleich \colvec{1\\0\\0\\0}, \colvec{0\\1\\0\\0} und \colvec{0\\0\\1\\0}. 
+Der Standpunkt des Betrachters $\vec{v}$ ist \colvec{0\\0\\0\\10}. Somit 
+schauen wir vom Zentrum einer Seite
+von einer Distanz gleich 10 Einheiten, wobei der Würfelkante die Länge 2 hat.
+
+Bei der anschließende Projektion von 3 auf 2 Dimensionen sind $\vec{e_1}$ und 
+$\vec{e_2}$ gleich \colvec{1\\0\\0} und \colvec{0\\1\\0} und $ \vec{v} $ befindet 
+sich am \colvec{0\\0\\20}.
+
+\section{Eine Rotation}
+Um einen besseren Eindruck zu bekommen, möchte ich den Hyperwürfel rotieren.
+Ich werde zuerst die letzte Projektion anpassen. Es ist nicht nötig, den
+Würfel zu rotieren. Es reicht, wenn ich die vektoren $\vec{e_1}$ und
+$\vec{e_2}$ und $\vec{v}$ anpasse. Damit erspare ich mir das Rotieren der
+16 Eckpunkte des Würfels.
+
+Ich möchte den Würfel om 10° um die z-Achse drehen. Dazu muss ich alle Projektionsvektoren om -10° drehen. Die Rotationsmatrix wird also:
+\myeq{ R_3 = 
+    \begin{pmatrix}
+        \cos(\alpha) & \sin(\alpha) & 0\\
+        -\sin(\alpha) &\cos(\alpha) & 0\\
+        0 & 0 & 1
+    \end{pmatrix}
+}{rot1}
+wobei $\alpha = -10 \cdot \frac{\pi}{180}$
+
+Die Vektoren $\vec{e_1}$, $\vec{e_2}$ und $\vec{v}$ werden:
+\myeq{\vec{e^\prime_1} = R \vec{e_1},\  
+    \vec{e^\prime_2} = R \vec{e_2},\ 
+    \vec{v^\prime} = R \vec{v}}{rot2}
+
+Das Ergebnis ist in \autoref{hc0_10} zu sehen.
+
+\psimg{python/hc0_10.tex}{Der Hyperwürfel om 10° im dreidimensionalen 
+    Raum gedreht}{\label{hc0_10}}
+
+Es scheint, als befände sich ein kleinerer Würfel innerhalb 
+eines Größeren.
+
+Ich möchte jetzt sehen, wie sich eine Rotation in der vierten Dimension
+auf den Hyperwürfel auswirkt. Ich entscheide mich für eine einfache
+Rotation, wobei $x_1$ und $x_2$ invariant bleiben. Somit wird der 
+Rotationsmatrix $R_4$:
+\myeq{R_4 = 
+    \begin{pmatrix}
+         1&0&0&0\\
+         0&1&0&0\\
+        0&0&\cos(\beta)&\sin(\beta)\\
+        0&0&-\sin(\beta)&\cos(\beta)\\
+    \end{pmatrix}    
+}{rot3}
+Für verschiedene $\beta$
 \end{document}

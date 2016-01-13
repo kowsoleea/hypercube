@@ -41,28 +41,25 @@ def make_hypercube(dimension):
         return newlines
 
 
-length = 2
-crosslength = 0.5
-def make_hypercross(dimension):
-    s = []
-    c = []
-    zero = [0 for _ in range(dimension)]
-    for i in range(dimension):
-        e = [0 for _ in range(dimension)]
-        f = [0 for _ in range(dimension)]
-        s.append(e)
-        c.append(f)
-    for i in range(dimension):
-        s[i][i] = length
-        c[i][i] = length
-        j = i + 1 if (i+1) < dimension else 0
-        c[i][j] = crosslength
-    lines = []
-    for i in range(dimension):
-        lines.append([zero, s[i]])
-        lines.append([s[i], c[i]])
-    return lines
 
+hypercrosslength = 2
+hypercrosscross = 0.5
+def make_hypercross(dimension):
+    if dimension == 1:
+        return [[0], [hypercrosslength]]
+    else:
+        lines = []
+        zero = [0 for _ in range(dimension)]
+        for i in range(dimension):
+            s = [0 for _ in range(dimension)]
+            s[i] = hypercrosslength
+            c = [s[k] for k in range(dimension)]
+            j = i + 1
+            j = j if j < dimension else 0
+            c[j] = hypercrosscross
+            lines.append([zero, s])
+            lines.append([s, c])
+    return lines
 
 def dotproduct(v1, v2):
     vsum = 0
@@ -104,7 +101,7 @@ class Projection(object):
     def __init__(self, dimension=2, distance=10):
         self.dimension = dimension
         self.distance = distance
-        self.view_vector = [0 for i in range(self.dimension + 1)]
+        self.view_vector = [0 for _ in range(self.dimension + 1)]
         self.view_vector[self.dimension] = self.distance
         self.unit_vectors = []
         self.rotmatrix = []
@@ -185,21 +182,22 @@ class SVG_file(object):
         self.width = width
         self.height = height
         self.origin_x = int(width / 2.0)
-        self.origin_y = int(height - (height / 2.0))
-        self.scale = scale
+        self.origin_y = int(height / 2.0)
+        self.scale_x = scale
+        self.scale_y = scale
         self.output_file = outfile
 
-    def set_width(self, width=1000):
+    def set_scale(self, scale):
+        self.scale_x = scale
+        self.scale_y = scale
+
+    def set_width(self, width):
         self.width = width
         self.origin_x = int(width / 2.0)
 
-    def set_height(self, height=1000):
+    def set_height(self, height):
         self.height = height
-        self.origin_y = int(height - (height / 2.0))
-
-    def set_scale(self, scale=300):
-        self.scale = scale
-
+        self.origin_y = int(height / 2.0)
 
     def make_point(self, point):
         px = int(self.origin_x + self.scale * point[0])
@@ -257,7 +255,7 @@ def read_inifile(p3, p2, svg):
         elif name == 'height':
             svg.set_height(int(value, 10))
         elif name == 'scale':
-            svg.scale = int(value, 10)
+            svg.set_scale(int(value, 10))
         elif name == 'outfile':
             svg.output_file = value
     return p3, p2, svg
@@ -276,9 +274,15 @@ def main():
     p3 = Projection(3)
     svg = SVG_file()
     p3, p2, svg = read_inifile(p3, p2, svg)
+    #now do the work
+##    hc = make_hypercube(4)
+##    hc3 = p3.project_all_lines(hc)
+##    hc2 = p2.project_all_lines(hc3)
+##    svg.make_svg(hc2)
     hc = make_hypercross(4)
-    hcp = p2.project_all_lines(p3.project_all_lines(hc))
-    svg.make_svg(hcp)
+    hc_3 = p3.project_all_lines(hc)
+    hc_2 = p2.project_all_lines(hc_3)
+    svg.make_svg(hc_2)
     return 0
 
 

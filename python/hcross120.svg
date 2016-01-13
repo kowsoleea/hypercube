@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1000" height="1000">
+     <line x1="500" y1="500" x2="368" y2="497" style="stroke:rgb(0,0,0);stroke-width:1" />
+     <line x1="368" y1="497" x2="368" y2="431" style="stroke:rgb(0,0,0);stroke-width:1" />
+     <line x1="500" y1="500" x2="500" y2="197" style="stroke:rgb(0,0,0);stroke-width:1" />
+     <line x1="500" y1="197" x2="486" y2="194" style="stroke:rgb(0,0,0);stroke-width:1" />
+     <line x1="500" y1="500" x2="440" y2="529" style="stroke:rgb(0,0,0);stroke-width:1" />
+     <line x1="440" y1="529" x2="513" y2="530" style="stroke:rgb(0,0,0);stroke-width:1" />
+     <line x1="500" y1="500" x2="744" y2="503" style="stroke:rgb(0,0,0);stroke-width:1" />
+     <line x1="744" y1="503" x2="703" y2="503" style="stroke:rgb(0,0,0);stroke-width:1" />
+</svg>

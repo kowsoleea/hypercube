@@ -275,11 +275,8 @@ def main():
     svg = SVG_file()
     p3, p2, svg = read_inifile(p3, p2, svg)
     #now do the work
-##    hc = make_hypercube(4)
-##    hc3 = p3.project_all_lines(hc)
-##    hc2 = p2.project_all_lines(hc3)
-##    svg.make_svg(hc2)
-    hc = make_hypercross(4)
+    hc = make_hypercube(4)
+    #hc = make_hypercross(4)
     hc_3 = p3.project_all_lines(hc)
     hc_2 = p2.project_all_lines(hc_3)
     svg.make_svg(hc_2)

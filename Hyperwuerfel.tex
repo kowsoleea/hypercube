@@ -250,14 +250,22 @@ Bei der anschließende Projektion von 3 auf 2 Dimensionen sind $\vec{e_1}$ und
 $\vec{e_2}$ gleich \colvec{1\\0\\0} und \colvec{0\\1\\0} und $ \vec{v} $ befindet 
 sich am \colvec{0\\0\\20}.
 
+Bedingt durch die Art wie diese Projektionen programmiert wurden und wie sie
+aufeinander folgen, läuft die $x_1$-Achse immer nach rechts, die $x_2$-Achse
+immer nach oben. Die $x_3$-Achse scheint auf den Betrachter zu zu gehen. Eine 
+Richtung für die $x_4$-Achse kann nicht so einfach gegeben werden, weil es für
+die vierte Raumdimension eigentlich keinen "`Platz"' gibt.
+
 \section{Eine Rotation}
 Um einen besseren Eindruck zu bekommen, möchte ich den Hyperwürfel rotieren.
 Ich werde zuerst die letzte Projektion anpassen. Es ist nicht nötig, den
-Würfel zu rotieren. Es reicht, wenn ich die vektoren $\vec{e_1}$ und
+Würfel zu rotieren. Es reicht, wenn ich die Vektoren $\vec{e_1}$ und
 $\vec{e_2}$ und $\vec{v}$ anpasse. Damit erspare ich mir das Rotieren der
 16 Eckpunkte des Würfels.
 
-Ich möchte den Würfel om 10° um die z-Achse drehen. Dazu muss ich alle Projektionsvektoren om -10° drehen. Die Rotationsmatrix wird also:
+Ich möchte den Würfel om 10° um die $x_2$-Achse (nach oben) drehen. 
+Dazu muss ich alle Projektionsvektoren om -10° drehen. Die Rotationsmatrix 
+wird also:
 \myeq{ R_3 = 
     \begin{pmatrix}
         \cos(\alpha) & \sin(\alpha) & 0\\
